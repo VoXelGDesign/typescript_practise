@@ -1,5 +1,4 @@
 export interface DisplayableOnMap{
-
   getLocation() : {
     lat: number 
     lng: number

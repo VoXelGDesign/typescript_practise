@@ -6,10 +6,10 @@ const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as g
 export class CustomMap {
   private map: google.maps.Map
 
-  constructor(){
+  constructor(mapId: string = "map"){
     
     this.map = new google.maps.Map(
-      document.getElementById('map') as HTMLElement,
+      document.getElementById(mapId) as HTMLElement,
       {zoom: 3, center: {lat:0, lng:0}, mapId: "MY_MAP"}
     );
   }
@@ -18,7 +18,7 @@ export class CustomMap {
 
     const marker = new AdvancedMarkerElement({
       map: this.map,
-      position: object.getLocation(),
+      position: object.getLocation(),  
     });
 
     marker.addListener('click', () => {
@@ -26,8 +26,10 @@ export class CustomMap {
         content: object.getDetails(),  
       });
        
-      infoWindow.open(this.map, marker);     
-    });
+      infoWindow.open(this.map, marker);
+     }
+
+  );
 
     this.map.setCenter(object.getLocation())
   }

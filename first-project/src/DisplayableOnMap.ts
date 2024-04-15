@@ -1,7 +1,8 @@
 export interface DisplayableOnMap{
-  name: string
-  location: {
+
+  getLocation() : {
     lat: number 
     lng: number
   }
+  getDetails(): string
 }

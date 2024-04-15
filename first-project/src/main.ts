@@ -1,6 +1,10 @@
+
 import { Company } from "./Comapny";
-import {User} from './User'; 
+import { CustomMap } from "./CustomMap"
+import { User } from "./User"
 
 
-console.log(new User());
-console.log(new Company())
+const map = new CustomMap();
+
+map.AddMarker(new User)
+map.AddMarker(new Company)

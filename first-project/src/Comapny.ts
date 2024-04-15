@@ -4,8 +4,8 @@ import { DisplayableOnMap } from "./DisplayableOnMap";
 
 
 export class Company implements DisplayableOnMap {
-  name: string
-  location: { 
+  private name: string
+  private location: { 
     lat: number
     lng: number
   }
@@ -20,5 +20,12 @@ export class Company implements DisplayableOnMap {
     }
     this.catchPharse = faker.company.catchPhrase()
   }
+ 
+  public getLocation() {
+    return this.location
+  }
 
+  public getDetails(): string {
+    return `Company: ${this.name} <br/> ${this.catchPharse}`
+  }
 }

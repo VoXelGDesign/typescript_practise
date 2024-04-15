@@ -4,7 +4,7 @@ import { DisplayableOnMap } from "./DisplayableOnMap";
 
 export class User implements DisplayableOnMap {
 
-  name: string
+  private name: string
   location: {
     lat: number 
     lng: number
@@ -21,5 +21,11 @@ export class User implements DisplayableOnMap {
 
     }
 
-  
+    public getLocation() {
+      return this.location
+    }
+
+    getDetails(): string {
+      return `User: ${this.name}`
+    }
 }

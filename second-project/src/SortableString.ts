@@ -1,10 +1,10 @@
 import { Sortable } from "./Sortable";
 
 export class SortableString implements Sortable {
-  public length: number;
+  constructor(public data: string) {}
 
-  constructor(public data: string) {
-    this.length = data.length;
+  get length(): number {
+    return this.data.length;
   }
 
   public Swap(leftElementIndex: number, rightElementIndex: number): void {

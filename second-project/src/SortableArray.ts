@@ -1,7 +1,7 @@
 import { Sortable } from "./Sortable";
 
-export class SortableNumbersArray implements Sortable {
-  constructor(public data: number[]) {}
+export class SortableArray<T> implements Sortable {
+  constructor(public data: T[]) {}
 
   get length(): number {
     return this.data.length;
@@ -13,7 +13,11 @@ export class SortableNumbersArray implements Sortable {
     this.data[rightElementIndex] = elementToSwap;
   }
 
-  public Compare(leftElementIndex: number, rightElementIndex: number): boolean {
-    return this.data[leftElementIndex] > this.data[rightElementIndex];
+  public Compare(
+    leftElementIndex: number,
+    rightElementIndex: number,
+    comparer: (a: any, b: any) => boolean
+  ): boolean {
+    return comparer(this.data[leftElementIndex], this.data[rightElementIndex]);
   }
 }

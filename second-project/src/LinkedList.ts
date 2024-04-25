@@ -1,3 +1,5 @@
+import { Sortable } from "./Sortable";
+
 type nullableNode<T> = Node<T> | null;
 
 export class Node<T> {
@@ -5,7 +7,7 @@ export class Node<T> {
   constructor(public value: T | null = null) {}
 }
 
-export class LinkedList<T> {
+export class LinkedList<T> implements Sortable {
   private _length: number = 0;
   private _lastNode: Node<T>;
   private _head: Node<T> = new Node<T>(null);
@@ -16,6 +18,14 @@ export class LinkedList<T> {
 
   public get length(): number {
     return this._length;
+  }
+
+  public static createFromArray<T>(array: T[]): LinkedList<T> {
+    const list = new LinkedList<T>();
+    array.forEach((element) => {
+      list.addElement(element);
+    });
+    return list;
   }
 
   public getNode(index: number): Node<T> {
@@ -33,7 +43,15 @@ export class LinkedList<T> {
     return currentNode;
   }
 
-  public swap(leftElementIndex: number, rightElementIndex: number): void {
+  public Compare(
+    leftElementIndex: number,
+    rightElementIndex: number,
+    comparer: (a: any, b: any) => boolean
+  ): boolean {
+    return comparer(this.get(leftElementIndex), this.get(rightElementIndex));
+  }
+
+  public Swap(leftElementIndex: number, rightElementIndex: number): void {
     let leftNode = this.getNode(leftElementIndex);
     let rightNode = this.getNode(rightElementIndex);
 

@@ -15,16 +15,12 @@ const reader = new CsvFileReader_1.CsvFileReader("football.csv", (record) => {
         awayTeam: record[2],
         homeTeamScore: Number.parseInt(record[3]),
         awayTeamScore: Number.parseInt(record[4]),
-        matchResult: record[5] === "H"
-            ? MatchResult.HomeWin
-            : record[5] === "A"
-                ? MatchResult.AwayWin
-                : MatchResult.Draw,
+        matchResult: record[5],
         city: record[6],
     };
     return mapped;
 });
-console.log(reader.data);
+console.log(reader.data[0]);
 let manUnitedWins = 0;
 reader.data.forEach((match) => {
     if (match.homeTeam === "Man United" &&

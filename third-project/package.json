@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "@types/node": "^20.12.7",
+    "concurrently": "^8.2.2",
+    "node": "^22.0.0",
+    "nodemon": "^3.1.0"
+  },
+  "name": "third-project",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev:build": "tsc -w",
+    "dev:start": "nodemon build/main.js",
+    "dev": "concurrently  npm:dev:*"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {},
+  "description": ""
+}

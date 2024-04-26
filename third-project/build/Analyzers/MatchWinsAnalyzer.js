@@ -20,9 +20,12 @@ class MatchWinAnalyzer {
         });
         const results = [];
         for (let key in wins) {
-            results.push(`Team ${key} won ${wins[key]} games \n`);
+            results.push(`Team ${key} won ${wins[key]} games`);
         }
-        return { reportName: "Wins for every match", reportResult: results.join() };
+        return {
+            reportName: "Wins for every match",
+            reportResult: results.join("\n"),
+        };
     }
 }
 exports.MatchWinAnalyzer = MatchWinAnalyzer;

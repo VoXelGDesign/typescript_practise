@@ -4,7 +4,7 @@ exports.ReportConsoleDisplayer = void 0;
 class ReportConsoleDisplayer {
     display(reportName, reportResult) {
         console.log(`Name: ${reportName} \n`);
-        console.log(`Report results: \n ${reportResult} \n`);
+        console.log(`Report results:\n${reportResult} \n`);
     }
 }
 exports.ReportConsoleDisplayer = ReportConsoleDisplayer;

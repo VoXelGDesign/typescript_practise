@@ -1,9 +1,9 @@
-export interface Sortable {
+export interface Sortable<T> {
   length: number;
-  Compare(
+  compare(
     leftElementIndex: number,
     rightElementIndex: number,
-    comparer: (a: any, b: any) => boolean
+    comparer: (a: T, b: T) => boolean
   ): boolean;
-  Swap(leftElementIndex: number, rightElementIndex: number): void;
+  swap(leftElementIndex: number, rightElementIndex: number): void;
 }

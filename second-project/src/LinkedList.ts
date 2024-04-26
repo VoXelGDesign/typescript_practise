@@ -1,4 +1,4 @@
-import { Sortable } from "./Sortable";
+import { Sorter } from "./Sorter";
 
 type nullableNode<T> = Node<T> | null;
 
@@ -7,12 +7,13 @@ export class Node<T> {
   constructor(public value: T | null = null) {}
 }
 
-export class LinkedList<T> implements Sortable {
+export class LinkedList<T> extends Sorter<T> {
   private _length: number = 0;
   private _lastNode: Node<T>;
   private _head: Node<T> = new Node<T>(null);
 
   constructor() {
+    super();
     this._lastNode = this._head;
   }
 
@@ -43,7 +44,7 @@ export class LinkedList<T> implements Sortable {
     return currentNode;
   }
 
-  public Compare(
+  public compare(
     leftElementIndex: number,
     rightElementIndex: number,
     comparer: (a: any, b: any) => boolean
@@ -51,7 +52,7 @@ export class LinkedList<T> implements Sortable {
     return comparer(this.get(leftElementIndex), this.get(rightElementIndex));
   }
 
-  public Swap(leftElementIndex: number, rightElementIndex: number): void {
+  public swap(leftElementIndex: number, rightElementIndex: number): void {
     let leftNode = this.getNode(leftElementIndex);
     let rightNode = this.getNode(rightElementIndex);
 

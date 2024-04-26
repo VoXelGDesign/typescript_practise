@@ -1,30 +1,26 @@
 import { LinkedList } from "./LinkedList";
 import { SortableArray } from "./SortableArray";
-import { Sorter } from "./Sorter";
+
 const soratbleNumbers = new SortableArray([10, 3, -5, 0]);
 const soratbleString = new SortableArray(
   "QWERTYuiopasdfghjklzxcvbnm".split("")
 );
 
-let sorter = new Sorter(soratbleNumbers, (a, b) => a > b);
-sorter.sort();
-console.log(sorter.collection);
+const comaprerForStrings = (a: string, b: string) =>
+  a.toLocaleLowerCase() > b.toLocaleLowerCase();
 
-sorter = new Sorter(
-  soratbleString,
-  (a: string, b: string) => a.toLowerCase() > b.toLowerCase()
-);
-sorter.sort();
+soratbleNumbers.sort((a, b) => a > b);
+soratbleString.sort(comaprerForStrings);
 
-console.log(sorter.collection);
+console.log(soratbleNumbers);
+console.log(soratbleString);
 
-const list = LinkedList.createFromArray([0, -5, 10, 3]);
+const listNumbers = LinkedList.createFromArray([1, -3, 2, -10]);
+listNumbers.sort((a, b) => a > b);
+listNumbers.print();
 
-console.log(list);
-list.print();
-console.log(list.length);
-console.log(list.get(2));
+const listString = LinkedList.createFromArray("QWERTYasbcude".split(""));
 
-list.Swap(1, 2);
-console.log(list);
-list.print();
+listString.sort(comaprerForStrings);
+
+listString.print();

@@ -1,6 +1,7 @@
 import fs from "node:fs";
+import { Reader } from "./Reader";
 
-export class CsvFileReader<T> {
+export class CsvFileReader<T> implements Reader<T> {
   readonly data: T[] = [];
   constructor(public fileName: string, readonly parser: (row: string[]) => T) {
     const rows = fs

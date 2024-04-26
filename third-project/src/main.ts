@@ -1,25 +1,13 @@
 import fs from "node:fs";
-import { CsvFileReader } from "./CsvFileReader";
-import { Cipher } from "node:crypto";
+import { CsvFileReader } from "./Readers/CsvFileReader";
 import { parseStringToDate } from "./utils";
-enum MatchResult {
-  HomeWin = "H",
-  AwayWin = "A",
-  Draw = "D",
-}
+import { MatchData, MatchResult } from "./MatchData";
+import { Summary } from "./Summary";
+import { MatchWinAnalyzer } from "./Analyzers/MatchWinsAnalyzer";
+import { ReportConsoleDisplayer } from "./ReportDisplayers/ReportConsoleDisplayer";
 
-type TempType = {
-  date: Date;
-  homeTeam: string;
-  awayTeam: string;
-  homeTeamScore: number;
-  awayTeamScore: number;
-  matchResult: MatchResult;
-  city: string;
-};
-
-const reader = new CsvFileReader<TempType>("football.csv", (record) => {
-  const mapped: TempType = {
+const reader = new CsvFileReader<MatchData>("football.csv", (record) => {
+  const mapped: MatchData = {
     date: parseStringToDate(record[0]),
     homeTeam: record[1],
     awayTeam: record[2],
@@ -50,3 +38,9 @@ reader.data.forEach((match) => {
 });
 
 console.log(`Manchester united won ${manUnitedWins} games`);
+
+const matchWinAnalyzer = new MatchWinAnalyzer();
+const displayer = new ReportConsoleDisplayer();
+const summary = new Summary(reader, matchWinAnalyzer, displayer);
+
+summary.run();
